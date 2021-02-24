@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Сервис формирования полётных планов</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="leaflet.css">
+    <link rel="stylesheet" href="leaflet-sidebar.css">
+        
+    <script src="leaflet.js"></script>
+    <script src="leaflet-sidebar.js"></script>
+        
+    <script type="text/javascript" src="polyfills.umd.js"></script>
+		<script type="text/javascript" src="jspdf.umd.js"></script>
+    
+    <script defer src="app.js"></script>
+  </head>
+  <body>
+    <!-- optionally define the sidebar content via HTML markup -->
+    <div id="sidebar" class="leaflet-sidebar collapsed">
+      <!-- nav tabs -->
+      <div class="leaflet-sidebar-tabs">
+          <!-- top aligned tabs -->
+          <ul role="tablist">
+              <li><a href="#home" role="tab"><img src="images/menu.svg" class="menu-image"></a></li>
+          </ul>
+      </div>
+      <!-- panel content -->
+      <div class="leaflet-sidebar-content">
+        <div class="leaflet-sidebar-pane" id="home">
+          <div class="gap"><input class="inptBox" type="text" id="last-name" placeholder="Фамилия"></div>
+          <div class="gap"><input class="inptBox" type="text" id="first-name" placeholder="Имя"></div>
+          <div class="gap"><input class="inptBox" type="text" id="father-name" placeholder="Отчество"></div>
+          <div class="gap"><input class="inptBox" type="number" id="phone" placeholder="Номер телефона"></div>
+          <div class="gap"><input class="inptBox" type="text" id="e-mail" placeholder="e-mail"></div>
+          <div class="gap"><input class="inptBox" type="number" id="quant" placeholder="Количество ВС"></div>
+          <div class="gap"><input class="inptBox" type="text" id="altitude" placeholder="Высота, м"></div>
+          <div class="gap">
+            <select class="inptBox" id="place" type="text" data-desc="Место полётов">
+              <option value="">Место полётов</option>
+              <option value="XC">МАРШРУТ</option>
+              <option value="LS">Лагерный сад</option>
+              <option value="Knd">Кандинка</option>
+              <option value="Nlb">Нелюбино</option>
+              <option value="Brz">Берёзкино</option>
+              <option value="Mkr">Макурино</option>
+              <option value="Boy">Боярское</option>
+              <option value="Eus">Эушта</option>
+            </select>
+          </div>
+          <div class="gap">
+            <select id="radius" class="inptBox" data-desc="Радиус">
+              <option value="">Радиус, км</option>
+              <option value="1">1 км</option>
+              <option value="2">2 км</option>
+              <option value="3">3 км</option>
+              <option value="4">4 км</option>
+              <option value="5">5 км</option>
+            </select>
+          </div>
+          <div class="gap">
+            <div class="inptTitle">Дата полёта</div>
+            <input class="inptBox" type="date" id="date" placeholder="Дата полёта">
+          </div>
+          <div class="gap">
+            <div class="inptTitle">Время начала (местное)</div>
+            <input type="time" class="inptBox" id="start-time" placeholder="Время начала">
+            <div class="inptTitle">Время окончания (местное)</div>
+            <input type="time" class="inptBox" id="end-time" placeholder="Время оканчания">
+          </div>
+          <div class="buttons">
+            <button class="button" id="viewPDF">Просмотреть FPL</button>
+            <button class="button disable" id="downloadPDF">Скачать FPL</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="mapid" class="leaflet-clickable" style="position: relative"></div>
+  </body>
+</html>

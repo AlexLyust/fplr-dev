@@ -1,0 +1,48 @@
+html, body, #mapid {
+  overflow: hidden;
+  background: #555555;
+  height: 100%;
+  margin: 0;
+}
+.inptBox {
+  color: #333;
+  width: 170px;
+  height: 20px;
+  position: inline-block;
+  padding-left: 3px;
+  padding-right: 10px;
+  margin: 4px;
+  transition: box-shadow 320ms;
+  box-shadow: 0px 0px 8px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 3px;
+  font-size: 14px;
+  border: 4px;
+}
+.inptBox:hover {
+  outline: 0px;
+  outline-offset: 0px;
+  box-shadow: 0px 0px 1px 5px rgba(0, 0, 0, 0.12);
+}
+.button {
+  margin: 5px 5px;
+  color: white;
+  height: 30px;
+  background-color: #0074d9;
+  border: none;
+  box-shadow: 0px 0px 8px 10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 320ms;
+}
+.button.disable {
+  background-color: #6493bd;
+}
+.button:hover {
+  box-shadow: 0px 0px 1px 5px rgba(0, 0, 0, 0.12);
+  cursor: pointer;
+}
+.cursor-crosshair {
+  cursor: crosshair !important;
+}
+.menu-image {
+  height: 15px;
+  width: 15px;
+}
