@@ -551,7 +551,7 @@ function CheckFill() {
   if (msg.length == 0) {
     return true;
   } else {
-    alert('Не заполнены поля:\n' + msg);
+    alert('Не заполнены следующие поля:\n' + msg);
     return false;
   }
 }

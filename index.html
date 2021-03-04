@@ -26,6 +26,7 @@
           <ul role="tablist">
               <li><a href="#home" role="tab"><img src="images/menu.svg" class="menu-image"></a></li>
           </ul>
+
       </div>
       <!-- panel content -->
       <div class="leaflet-sidebar-content">
@@ -73,10 +74,32 @@
           <div class="buttons">
             <button class="button" id="viewPDF">Просмотреть FPL</button>
             <button class="button disable" id="downloadPDF">Скачать FPL</button>
+            <button class="info" id="info">
+              <a href="#openModal">
+                <svg height="30" width="30">
+                  <circle cx="15" cy="15" r="12" stroke="#fff" stroke-width="2" stroke-opacity="0.8" fill="none" />
+                  <text x="13" y="20" font-weight="bold" fill="#fff">i</text>
+              </svg>
+            </a>
+            </button>
           </div>
         </div>
       </div>
     </div>
     <div id="mapid" class="leaflet-clickable" style="position: relative"></div>
+    <div id="openModal" class="modal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h3 class="modal-title">Информация</h3>
+            <a href="#close" title="Close" class="close">×</a>
+          </div>
+          <div class="modal-body">
+            <p> Сервис предназначен для формирования файлов полётных планов в формате pdf., для полётов выполняемых тольков пределах диспетчерского района Новосибирского зонального центра.</p>
+            <p>Для формирования полётного плана необходимо заполнить все поля.</p>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
