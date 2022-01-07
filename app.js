@@ -11,6 +11,7 @@ const frm ={
   quant: document.querySelector('#quant'),
   siteHeight: document.querySelector('#altitude'),
   sitePlace: document.querySelector('#place'),
+  EET: document.querySelector('#EET'),
   siteRadius: document.querySelector('#radius'),
   dateControl: document.querySelector("#date"),
   sTimeControl: document.querySelector("#start-time"),
@@ -18,7 +19,7 @@ const frm ={
 };
 
 const mapCoords = [56.45, 84.948197]; //координаты центра карты при инициализации
-
+//координаты стандартных лётных мест Томска
 const siteCoords = {
   Boy: ["562700", "0845500"],
   LS: ["562700", "0845700"],
@@ -29,7 +30,7 @@ const siteCoords = {
   Eus: ["563100", "0845200"],
 };
 
-//описываем координаты диспетчерских зон и районов
+//описываем координаты диспетчерских зон и районов Томской области и Тывы
 const UNP252 = {
   Coords: [
     [56.7, 85.016],
@@ -79,7 +80,21 @@ golovino = {
   AltTop: "FL50",
   AltBottom: "GND",
   Class: "C"
-};
+},
+kyzyl = {
+	Name: "Кызыл",
+	Coords: [
+	["52.1500000000", "93.905"],
+	["52", "95"],
+	["51.5666666667", "95.183333333"],
+	["51.325","94.791666667"],
+	["51.3466666667", "94.05"],
+	["52.1500000000", "93.905"]
+	],
+	AltTop: "FL160",
+	AltBottom: "GND",
+	Class: "C"}
+;
 
 //блок обработки панели управления зонами и слоями
 const CZones = L.layerGroup(), RZones = L.layerGroup();
@@ -88,6 +103,11 @@ const BogZone = L.polygon(UNTT.Coords, { color: "#ff7800", weight: 1 }).addTo(
 CZones
 );
 const GolZone = L.polygon(golovino.Coords, {
+  color: "green",
+  weight: 1,
+  opacity: 0.65
+}).addTo(CZones);
+const KyzylZone = L.polygon(kyzyl.Coords, {
   color: "green",
   weight: 1,
   opacity: 0.65
@@ -102,15 +122,15 @@ const mymap = L.map("mapid", {
 zoomControl: false,
 layers: [CZones, RZones]
 }).setView(mapCoords, 13);
-//ставим ограничения на перемещение по карте
-const southWest = L.latLng(60, 90),
-northEast = L.latLng(54, 82);
-const bounds = L.latLngBounds(southWest, northEast);
 
-mymap.setMaxBounds(bounds);
-mymap.on('drag', function() {
-  mymap.panInsideBounds(bounds, { animate: true });
-});
+//ставим ограничения на перемещение по карте
+//const southWest = L.latLng(60, 90),
+//northEast = L.latLng(54, 82);
+//const bounds = L.latLngBounds(southWest, northEast);
+//mymap.setMaxBounds(bounds);
+//mymap.on('drag', function() {
+//  mymap.panInsideBounds(bounds, { animate: true });
+//});
 
 const overlayMaps = {
 "Зоны С": CZones,
@@ -404,6 +424,8 @@ function onSelectChanged() {
   if (frm.sitePlace.value == 'XC') {
     document.querySelector('#mapid').classList.add("cursor-crosshair");
     Route[0]='';
+    frm.siteRadius.placeholder = "Отклонения от линии маршрута, м";
+    frm.siteRadius.alt = "Отклонения от линии маршрута, м";
   }else if (frm.sitePlace.value == ''){
     document.querySelector('#mapid').classList.remove("cursor-crosshair");
     markers.map((item) => item.remove());
@@ -418,11 +440,12 @@ function onSelectChanged() {
     markers.length=0;
     polyline.remove();
     polyline.setLatLngs(markers.map((item) => item.getLatLng()));
+    frm.siteRadius.placeholder = "Радиус, м";
   };
 }
 
 function onRadiusChanged() {
-  Circle.setRadius(frm.siteRadius.value * 1000);
+  Circle.setRadius(frm.siteRadius.value);
 }
 
 //функция транслитерации
@@ -494,11 +517,11 @@ function addCircle() {
 
   if (frm.sitePlace.value !== "" && frm.sitePlace.value !== "XC") {
     Circle.setLatLng(DMStoLatLng(siteCoords[frm.sitePlace.value]));
-    Circle.setRadius(frm.siteRadius.value * 1000);
+    Circle.setRadius(frm.siteRadius.value);
     Circle.addTo(mymap);
     mymap.flyTo(DMStoLatLng(siteCoords[frm.sitePlace.value]), 12);
     Route[0] = latLngToDDMM(Circle.getLatLng());
-  } else {
+    } else {
     polyline.addTo(mymap);
     markers.map((item) => item.addTo(mymap));
     if (markers.length != 0) mymap.setView(markers[0].getLatLng());
@@ -558,7 +581,9 @@ function CheckFill() {
 
 // блок построения бланка 
 function CreatePDF() {
-  
+  //если поля не заполнены выходим
+  if (!CheckFill()) {return};
+
   var doc = new jsPDF();
   const dt = new Date,
         dateCreating = dt.getFullYear()%100 + 
@@ -613,18 +638,20 @@ function CreatePDF() {
       otherInfo1 = otherInfo2 = otherInfo3 = otherInfo4 = '';
   
   if (frm.sitePlace.value == "XC") {
-    FLIGHTTYPE = `Полёт по маршруту, с отклонением от траектории на 500 м в обе стороны`
+    FLIGHTTYPE = `Полёт по маршруту, с отклонением от траектории на ${frm.siteRadius.value} м в обе стороны`
   } else if (frm.sitePlace.value !== "XC" && frm.sitePlace.value !== "") {
-    FLIGHTTYPE = `${Route[0]} полёты над точкой, радиусом ${frm.siteRadius.value} км.`;
+    FLIGHTTYPE = `${Route[0]} полёты над точкой, радиусом ${frm.siteRadius.value} м.`;
     DEP = Route[0];
     DEST = Route[0];
     Route1 = Route[0];
   }
 
   //заполняем графу другая информация
+  
+  let EET = frm.EET.value;
   let DOF = new Date(Date.parse(frm.dateControl.value));
   otherInfo1 =
-    "STS/23 EET/UNTT0001 DOF/" +
+    "STS/23 EET/" + EET + "0001 DOF/" +
     ("" + DOF.getFullYear()).slice(-2) +
     ("0" + (DOF.getMonth() + 1)).slice(-2) +
     ("0" + DOF.getDate()).slice(-2) +

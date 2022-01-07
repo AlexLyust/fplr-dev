@@ -5,6 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Сервис формирования полётных планов</title>
 
+    <!-- Yandex.Metrika counter -->
+    <script type="text/javascript" >
+      (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+      (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+      ym(73322899, "init", {
+       clickmap:true,
+       trackLinks:true,
+       accurateTrackBounce:true,
+       webvisor:true
+      });
+    </script>
+    <noscript><div><img src="https://mc.yandex.ru/watch/73322899" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+    <!-- /Yandex.Metrika counter -->
+
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="leaflet.css">
     <link rel="stylesheet" href="leaflet-sidebar.css">
@@ -39,6 +55,13 @@
           <div class="gap"><input class="inptBox" type="number" id="quant" placeholder="Количество ВС"></div>
           <div class="gap"><input class="inptBox" type="text" id="altitude" placeholder="Высота, м"></div>
           <div class="gap">
+            <select class="inptBox" id="EET" type="text" data-desc="Сектор НВП">
+              <option value="">Сектор НВП</option>
+              <option value="UNTT">UNTT(Томск)</option>
+              <option value="UNKY">UNKY(Кызыл)</option>
+            </select>
+          </div>
+          <div class="gap">
             <select class="inptBox" id="place" type="text" data-desc="Место полётов">
               <option value="">Место полётов</option>
               <option value="XC">МАРШРУТ</option>
@@ -51,16 +74,7 @@
               <option value="Eus">Эушта</option>
             </select>
           </div>
-          <div class="gap">
-            <select id="radius" class="inptBox" data-desc="Радиус">
-              <option value="">Радиус, км</option>
-              <option value="1">1 км</option>
-              <option value="2">2 км</option>
-              <option value="3">3 км</option>
-              <option value="4">4 км</option>
-              <option value="5">5 км</option>
-            </select>
-          </div>
+          <div class="gap"><input id="radius" class="inptBox" type="number" placeholder="Радиус, м"></div>
           <div class="gap">
             <div class="inptTitle">Дата полёта</div>
             <input class="inptBox" type="date" id="date" placeholder="Дата полёта">
@@ -91,12 +105,23 @@
       <div class="modal-dialog">
         <div class="modal-content">
           <div class="modal-header">
-            <h3 class="modal-title">Информация</h3>
+            <h3 class="modal-title">Информация по заполнению.</h3>
             <a href="#close" title="Close" class="close">×</a>
           </div>
           <div class="modal-body">
-            <p> Сервис предназначен для формирования файлов полётных планов в формате pdf., для полётов выполняемых тольков пределах диспетчерского района Новосибирского зонального центра.</p>
-            <p>Для формирования полётного плана необходимо заполнить все поля.</p>
+            <p> Сервис предназначен для формирования файлов полётных планов в формате pdf., для полётов выполняемых только в пределах диспетчерского района Новосибирского зонального центра.</p>
+            <p>Для формирования полётного плана необходимо заполнить все поля.<br>В графе номер телефона указываются только цифры.<br>
+            <i>В графе e-mail указывается адрес электронной почты на который нужно направить сформированный FPL (пока не работает).</i><br>
+            В графе количество воздушных судов указываем цифру.<br>
+            В графе высота указывается высота не более 1500 м. Выше уже класс С, и полёты нам запрещены.<br>
+            В графе место полётов выбирается место полётов, либо выбирается маршрут и прокладывается маршрут на карте. Для установки точек маршрута нужно на области карты нажать левую кнопку мыши (тапнуть на экране телефона), чтобы удалить точку можно нажать на нее правой кнопкой мыши (долго тапнуть на точку).<br>
+            В графе радиус/отклонение указывается радиус в метрах, для полётов в выбранном месте, либо величина отклонения от центра точки полётов в метрах.<br> В графе дата полёта указывается дата полётов. в графах время начала время окончания указывается местное время.</p>
+            <p>После нажатия кнопки Посмотреть FPL, откроется новая вкладка в браузере с оставленным файлом плана, и станет активной кнопка скачать FPL. Маршрут немного модифицируется, координаты точек округлятся до целых градусов, в соответствии с требованиями диспетчерского центра.</p>
+            <p>Зональный центр принимает план не позднее чем за 30 минут до начала полёта. Не забывайте звонить перед началом полётов и по факту завершения.</p>
+            <p>Оформленный план подаётся в Новосибирский Зональный Центр на адрес электронной почты: nzc@zsa.ru.</p>
+            <p>При выполнении полётов в окрестностях Томска, звонить перед началом полётов диспетчерам Богашево - Томск Информация-1 по номеру телефона: 8(38-22) 93-29-84</p>
+            <p>При выполнении полётов в окрестностях Турана, завноить на Кызыл-Вышка 8(39422)5-01-05</p>
+            <a href="test.html">test page</a>
           </div>
         </div>
       </div>
