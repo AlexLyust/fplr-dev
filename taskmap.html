@@ -1,0 +1,118 @@
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>taskmap</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+   <link rel="stylesheet" href="taskmap.css">
+   
+</head>
+<body>
+  <div id="taskmap"></div>
+  <div id="taskmenu"></div>
+
+  </div>
+  <script type="text/javascript" src="taskmap.js"></script>
+  <!-- <script type="text/javascript">
+
+let taskMap = L.map('taskmap', {
+  zoomControl: false,
+  center: [56.45, 84.948197],
+  zoom: 13
+});
+
+const OSM = L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+attribution:
+'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+}).addTo(taskMap);
+
+L.control.zoom().setPosition('topright').addTo(taskMap);
+
+/* $FormatUTM
+T01      45V   0373423   6258305    102  -Lep-  ["56.45224", "84.94626"]
+T02      45V   0373586   6258010     64  -River1- ["56.44963", "84.94905"]
+T03      45V   0373741   6258188     77  -Scena-  ["56.45127", "84.95147"]
+T04      45V   0373738   6258355    113  -Start-  ["56.45277","84.95134"]
+T05      45V   0374021   6258242    109  -Shlagbaum-  ["56.45183","84.95599"]
+T06      45V   0373928   6257948     64  -River2-  ["56.44917","84.95462"]
+T07      45V   0374198   6258009     87  -Shtolnya-  ["56.44978","84.95897"]
+T08      45V   0374335   6258166    120  -RK-Tusur-  ["56.45123","84.96111"]
+T09      45V   0374584   6257637     85  -Ugol-  ["56.44655","84.96540"]
+T10      45V   0374609   6257889    120  -BazaAntipova-  ["56.44882","84.96569"]
+T11      45V   0373372   6256573     74  -Kurya-  ["56.43667","84.94627"]
+T12      45V   0372197   6257709     84  -ParadPark-  ["56.44655","84.92667"] */
+
+const Waypoints = {
+  "T-01": {
+    coord: ["56.45224", "84.94626"],
+    Name: "Lep",
+    Alt: "102"
+  },
+  "T-02": {
+    coord: ["56.44963", "84.94905"],
+    Name: "River1",
+    Alt: "64"
+  },
+  "T-03": {
+    coord: ["56.45127", "84.95147"],
+    Name: "Scena",
+    Alt: "77"
+  },
+  "T-04": {
+    coord: ["56.45277","84.95134"],
+    Name: "Start",
+    Alt: "113"
+  },
+  "T-05": {
+    coord: ["56.45183","84.95599"],
+    Name: "Shlagbaum",
+    Alt: "109"
+  },
+  "T-06": {
+    coord: ["56.44917","84.95462"],
+    Name: "River2",
+    Alt: "64"
+  },
+  "T-07": {
+    coord: ["56.44978","84.95897"],
+    Name: "Shtolnya",
+    Alt: "87"
+  },
+  "T-08": {
+    coord: ["56.45123","84.96111"],
+    Name: "RK-Tusur",
+    Alt: "120"
+  },
+  "T-09": {
+    coord: ["56.44655","84.96540"],
+    Name: "Ugol",
+    Alt: "85"
+  },
+  "T-10": {
+    coord: ["56.44882","84.96569"],
+    Name: "BazaAntipova",
+    Alt: "120"
+  },
+  "T-11": {
+    coord: ["56.43667","84.94627"],
+    Name: "Kurya",
+    Alt: "74"
+  },
+  "T-12": {
+    coord: ["56.44655","84.92667"],
+    Name: "ParadPark",
+    Alt: "84"
+  }
+}
+
+
+
+  </script> -->
+</body>
+</html>

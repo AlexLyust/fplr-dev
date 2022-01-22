@@ -93,8 +93,8 @@ kyzyl = {
 	],
 	AltTop: "FL160",
 	AltBottom: "GND",
-	Class: "C"}
-;
+	Class: "C"
+};
 
 //блок обработки панели управления зонами и слоями
 const CZones = L.layerGroup(), RZones = L.layerGroup();

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset='utf-8'>
+  <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+  <title>Create a competition task</title>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+  integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+  crossorigin=""/>
+  <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+   integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+   crossorigin=""></script>
+   <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="taskCreator.css"/>
+</head>
+<body>
+  <div class="task-container">
+    <div class="taskmap">
+      <iframe src="taskmap.html" frameborder="0" width="100%" height="100%">
+      </iframe>
+    </div>
+    <div class="task-board">
+        <div class="board-item">
+          <p class="item-label">Task №</p>
+          <p class="task-num text-field">1</p>
+        </div>
+        <div class="board-item">
+          <p class="item-label">Type:</p>
+          <p class="task-type text-field">Race to goal</p>
+        </div>
+        <div class="board-item">
+          <p class="item-label">Date:&nbsp;</p>
+          <p class="task-date text-field">2022-02-10</p>
+        </div>
+        <div class="board-item">
+          <p class="item-label">Take off:</p>
+          <p class="TO-TP text-field">T-04</p>
+          <p class="item-label">R - </p>
+          <p class="TO-radius text-field">000</p>
+          <p class="item-label">m</p>
+          <br>
+          <p class="item-label">Gate time:</p>
+          <p class="text-field gate-open">00:00</p>
+          <p class="item-label">-</p>
+          <p class="text-field gate-close">00:00</p>
+        </div>
+        <div class="board-item">
+          <p class="item-label">Start:</p>
+          <p class="SSS-TP text-field">T-04</p>
+          <p class="item-label">R - </p>
+          <p class="SSS-radius text-field">000</p>
+          <p class="item-label">m</p>
+          <br>
+          <p class="item-label choosen">&nbsp;in/exit&nbsp;</p>
+          <p class="item-label">&nbsp;out/enter&nbsp;</p>
+          <br>
+          <p class="item-label">Open:</p>
+          <p class="text-field open">&nbsp;</p>
+          <p class="item-label">&nbsp;Close:</p>
+          <p class="text-field close">&nbsp;&nbsp;&nbsp;</p>
+        </div>
+        <div class="board-item">
+          <p class="item-label">Turnpoints</p>
+          <p class="text-field">
+            <ul class="tp-list">
+              <li> <!-- добавлем Li с номером и радиусом ТП -->
+                <p class="item-label tp-number">1</p>
+                <p class="item-label">:</p>
+                <p class="text-field tp1">T-01</p>
+                <p class="item-label">R - </p>
+                <p class="text-field tp1-radius">000</p>
+                <p class="text-field"> m</p>
+              </li>
+            </ul>
+          </p>
+          <p class="item-label">ESS:</p>
+          <p class="text-field ess">T-05</p>
+          <p class="item-label">R - </p>
+          <p class="text-field ess-radius">000</p>
+          <p class="text-field">m</p>
+          <br>
+          <p class="item-label">Goal:</p>
+          <p class="text-field goal">T-05</p>
+          <p class="item-label">R - </p>
+          <p class="text-field goal-radius">000</p>
+          <p class="text-field">m</p>
+          <br>
+          <p class="item-label">Total:</p>
+          <p class="text-field total-dist">000</p>
+          <p class="item-label">km (through centers)</p>
+          <br>
+          <p class="item-label">Task deadline:</p>
+          <p class="text-field deadline"></p>
+        </div>
+    </div>
+  </div>
+  <script type="module" src="TaskCreator.js"></script>
+</body>
+</html>

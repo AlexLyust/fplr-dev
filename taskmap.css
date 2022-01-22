@@ -1,0 +1,15 @@
+body {
+  margin: 0;
+}
+
+#taskmap {
+  width: 100%;
+  height: 100%;
+}
+
+.taskmenu {
+  background: rgba(255,255,255,0.8);
+  width: 150px;
+  height: 90%;
+  
+}

@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed&family=Roboto:wght@500&display=swap');
+
+.header {
+  margin: 0px;
+  /* width: 100% */
+ /*  height: 150px; */
+  max-height: 300px;
+  background-image: url('images/header-cover.JPG');
+  background-size: cover;
+  background-position: center center;
+  overflow: hidden;
+}
+/* .header-title {
+  display: flex;
+} */
